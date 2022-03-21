@@ -26,6 +26,7 @@ export class UserController {
   findAll() {
     return this.userService.findAll();
   }
+
   @UseGuards(JwtAuthGuard)
   @Get(':id')
   findOne(@Param('id') id: string) {
