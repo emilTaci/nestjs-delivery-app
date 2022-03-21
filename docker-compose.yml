@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  nodeserver: 
+    container_name: nodeServer
+    build: .
+    depends_on:
+      - db
+      - phpmyadmin
+    links:
+      - db
+    ports:
+      - "3000:3000"
+  db:
+    container_name: mysqlForCars
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: bootcamp2021
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+  phpmyadmin:
+    container_name: phpMyAdminForCars
+    image: phpmyadmin
+    links:
+      - db
+    environment:
+      - PMA_ARBITRARY=1
+    ports:
+      - "8080:80"

@@ -1,6 +1,9 @@
-FROM node:16.14.2-slim
-ENV NODE_VERSION 16.14.2
+FROM ubuntu
+RUN apt-get update
+RUN apt-get install -y curl
+RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash -
+RUN apt-get install -y nodejs
 WORKDIR /opt/node-app
 COPY . .
-RUN ["npm", "install"]
-CMD ["npm", "run", "start:dev"]
+RUN [ "npm", "install" ]
+CMD [ "npm", "build" ]
