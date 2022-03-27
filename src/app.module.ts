@@ -4,12 +4,12 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
-
+console.log(process.env.NODE_ENV);
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
+      host: process.env.NODE_ENV !== 'production' ? 'localhost' : 'db',
       port: 3306,
       username: 'root',
       password: 'bootcamp2021',
