@@ -2,6 +2,8 @@ version: '3.8'
 services:
   nodeserver: 
     container_name: nodeServer
+    environment:
+      - NODE_ENV=production
     build: .
     depends_on:
       - db
@@ -9,12 +11,13 @@ services:
     links:
       - db
     ports:
-      - "3000:3000"
+      - "4000:4000"
   db:
     container_name: mysqlForCars
     image: mysql
     environment:
-      MYSQL_ROOT_PASSWORD: bootcamp2021
+      - MYSQL_DATABASE=project-car
+      - MYSQL_ROOT_PASSWORD=bootcamp2021
     ports:
       - '3306:3306'
     expose:

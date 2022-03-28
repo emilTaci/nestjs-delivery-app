@@ -6,4 +6,7 @@ RUN apt-get install -y nodejs
 WORKDIR /opt/node-app
 COPY . .
 RUN [ "npm", "install" ]
-CMD [ "npm", "build" ]
+RUN [ "npm", "r", "bcrypt" ]
+RUN [ "npm", "i", "bcrypt" ]
+RUN npm run build
+CMD [ "npm", "start" ]
